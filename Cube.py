@@ -17,7 +17,7 @@ def generate_matrix_from_bin(b, mat_size, mat_shape):
     test_matrix=np.subtract(test_matrix, 48)
     test_matrix=np.concatenate((np.zeros(mat_size-len(test_matrix)), test_matrix),axis=None)
     test_matrix=test_matrix.reshape(mat_shape)
-    return test_matr ix
+    return test_matrix
 def generate_matrix_from_list(combo, mat_list, mat_shape):
     result= np.zeros(mat_shape)
     for i in combo:
@@ -44,6 +44,10 @@ def get_configuration_number(mat, mat_shape):
             if(is_configuration(test_mat)):
                 count = count + 1
     return count
+def dist(couple):
+    x = np.array(couple)
+    return np.linalg.norm(x[0]-x[1])
+
 def get_cube(dim):
     odds = list()
     evens = list()
@@ -68,11 +72,12 @@ def get_cube(dim):
 
 
 def main():
-    for i in range(1,5):
-        mat= get_cube(i)
+    for dim in range(1,5):
+        print(dim)
+        mat= get_cube(dim)
         config = get_configuration_number(mat,(pow(2,dim-1),pow(2,dim-1)))
         res = np.array([config])
-        np.save(str(i)+".npy", res)
+        np.save(str(dim)+".npy", res)
     
 
 

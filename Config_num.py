@@ -17,7 +17,7 @@ def generate_matrix_from_bin(b, mat_size, mat_shape):
     test_matrix=np.subtract(test_matrix, 48)
     test_matrix=np.concatenate((np.zeros(mat_size-len(test_matrix)), test_matrix),axis=None)
     test_matrix=test_matrix.reshape(mat_shape)
-    return test_matr ix
+    return test_matrix
 def generate_matrix_from_list(combo, mat_list, mat_shape):
     result= np.zeros(mat_shape)
     for i in combo:
@@ -49,9 +49,7 @@ def get_configs_of_shape(mat_shape, target_configs):
     mat_size = np.prod(mat_shape)
     for i in range(pow(2,mat_size)):
         mat = generate_matrix_from_bin(bin(i), mat_size, mat_shape)
-        
         config=get_configuration_number(mat, mat_shape)
-        
         if(config in target_configs):
             np.save(str(config)+".npy", mat)
     return
@@ -60,8 +58,10 @@ def get_configs_of_shape(mat_shape, target_configs):
 
 def main():
     target_figs=[ 57, 38, 703]
-    x=itertools.combinations_with_replacement(range(1,7), 2)
+    x=itertools.combinations_with_replacement(range(1,5), 2)
+    
     for i in x:
+        print(i)
         get_configs_of_shape(i,target_figs)
     
 
