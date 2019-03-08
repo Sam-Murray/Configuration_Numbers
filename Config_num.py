@@ -58,7 +58,7 @@ def get_configs_of_shape(mat_shape, target_configs):
 
 def main():
     target_figs=[ 57, 38, 703]
-    x=itertools.combinations_with_replacement(range(1,5), 2)
+    x=itertools.combinations_with_replacement(range(1,7), 2)
     
     for i in x:
         print(i)
